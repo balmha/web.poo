@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registro</title>
+        <link rel="stylesheet" href="usuarioCSS.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="myForm">
+            <p:growl id="growl" sticky="true" showDetail="true"/>
+            <p:tab id="datos" title="Datos">
+                <p:panel header="Datos de usuario">
+                    <p:messages />
+                    <h:panelGrid cellpadding="10" columns="2" columnClasses="label, value">
+                        <h:outputText value="Nombre de usuario: *" />
+                        <p:inputText value="#{usuarioController.usuario.name}" autocomplete="off" required="true" label="Nombre de usuario"/>
+
+                        <h:outputText value="Contraseña: *" />
+                        <p:password value="#{usuarioController.usuario.password}" autocomplete="off"  required="true" label="Contraseña"/>
+
+                        <h:outputText value="El usuario es administrador?: " />
+                        <h:selectBooleanCheckbox value="#{usuarioController.usuario.administrador}"/>
+                        <p:commandButton value="Registrarse" action="#{usuarioController.register()}">
+                        </p:commandButton>
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+        </h:form>
+        <br/>
+        <h:form >
+            <div align="center" draggable="false" >
+                <p:commandButton  action="#{usuarioController.inicio()}" value="Inicio">
+                    <p:ajax update="myForm" resetValues="true" />
+                </p:commandButton>
+            </div>
+        </h:form>
+    </h:body>
+</html>

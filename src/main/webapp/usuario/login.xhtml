@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>Login Page</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="loginForm">
+                <table frame="box">
+                    <tr>
+                        <th>Inicio de sesión</th>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="Ingrese su nombre : " /></td>
+                        <td><h:inputText id="inputName" value="#{usuarioController.usuario.name}"
+                                         required="true" requiredMessage="Campo de nombre no debe estar vacio" />
+                        </td>
+                        <td><h:message for="inputName" style="color:red" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="Ingrese su contraseña :" /></td>
+                        <td><h:inputSecret id="inputPassword" value="#{usuarioController.usuario.password}"
+                                           required="true"
+                                           requiredMessage="Campo de contraseña no debe estar vacio" /></td>
+                        <td><h:message for="inputPassword" style="color:red" /></td>
+                    </tr>
+                    <tr>
+                        <td><h:commandButton value="Iniciar sesion" action="#{usuarioController.login()}"/></td>
+                        <td><h:outputText value="No es un usuario? " />
+                            <h:outputLink value="register2.xhtml">Registrese</h:outputLink>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
