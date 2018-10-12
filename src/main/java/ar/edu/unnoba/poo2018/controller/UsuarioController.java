@@ -49,7 +49,11 @@ public class UsuarioController {
     }
 
     public String login() {
-        return "success";
+        Usuario authuser = userb.findByUser(usuario.getName(), usuario.getPassword());
+        if (authuser != null) {
+            return "success";
+        }
+        return "invalid";
     }
 
     public Usuario getUsuario() {
