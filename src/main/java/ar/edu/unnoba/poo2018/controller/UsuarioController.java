@@ -36,10 +36,11 @@ public class UsuarioController {
 
     public String register() {
         userb.create(usuario);
-        return "inicio.xhtml?faces-redirect=true";
+        return "success";
     }
 
     public String logout() {
+        System.out.println("Desloguearse");
         return "inicio.xhtml?faces-redirect=true";
     }
 
@@ -48,7 +49,7 @@ public class UsuarioController {
     }
 
     public String login() {
-        return "successLogin.xhtml?faces-redirect=true";
+        return "success";
     }
 
     public Usuario getUsuario() {

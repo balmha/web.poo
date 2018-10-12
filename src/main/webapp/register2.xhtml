@@ -13,19 +13,20 @@
         <h:form id="myForm">
             <p:growl id="growl" sticky="true" showDetail="true"/>
             <p:tab id="datos" title="Datos">
-                <p:panel header="Datos de usuario">
+                <p:panel header="Datos de usuario" id="panelcito">
                     <p:messages />
-                    <h:panelGrid cellpadding="10" columns="2" columnClasses="label, value">
+                    <h:panelGrid cellpadding="10" columns="8" columnClasses="label, value">
                         <h:outputText value="Nombre de usuario: *" />
-                        <p:inputText value="#{usuarioController.usuario.name}" autocomplete="off" required="true" label="Nombre de usuario"/>
-
+                        <p:inputText id="username" value="#{usuarioController.usuario.name}" autocomplete="off" required="true" label="Nombre de usuario"/>
+                        <p:message for="username"/>
                         <h:outputText value="Contraseña: *" />
-                        <p:password value="#{usuarioController.usuario.password}" autocomplete="off"  required="true" label="Contraseña"/>
-
+                        <p:password id="password" value="#{usuarioController.usuario.password}" autocomplete="off"  required="true" label="Contraseña">
+                            <p:ajax update="msgPassword" event="keyup" />
+                        </p:password>
+                        <p:message for="password" id="msgPassword"/>
                         <h:outputText value="El usuario es administrador?: " />
                         <h:selectBooleanCheckbox value="#{usuarioController.usuario.administrador}"/>
-                        <p:commandButton value="Registrarse" action="#{usuarioController.register()}">
-                        </p:commandButton>
+                        <p:commandButton value="Registrarse" update="panelcito" action="#{usuarioController.register()}" icon="ui-icon-check"/>
                     </h:panelGrid>
                 </p:panel>
             </p:tab>
@@ -33,9 +34,8 @@
         <br/>
         <h:form >
             <div align="center" draggable="false" >
-                <p:commandButton  action="#{usuarioController.inicio()}" value="Inicio">
-                    <p:ajax update="myForm" resetValues="true" />
-                </p:commandButton>
+                <p:commandLink action="#{usuarioController.inicio()}" value="Inicio">
+                </p:commandLink>
             </div>
         </h:form>
     </h:body>
