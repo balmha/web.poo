@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.ejb.EJB;
 import persistencePackage.UsuarioBean;
 
@@ -19,7 +19,7 @@ import persistencePackage.UsuarioBean;
  * @author Balma
  */
 @ManagedBean(name = "usuarioController")
-@SessionScoped
+@RequestScoped
 public class UsuarioController {
 
     @EJB
