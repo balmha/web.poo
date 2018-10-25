@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Actividades_Simples")
-@PrimaryKeyJoinColumn(referencedColumnName="nro")
+@PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Simple extends Actividad {
 	
 	@OneToMany(cascade = CascadeType.ALL)

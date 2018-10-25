@@ -8,14 +8,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,9 +26,9 @@ import javax.persistence.JoinColumn;
 public abstract class Actividad {
 
     @Id
-    @SequenceGenerator(name = "ID_ACTIVIDAD_SEQ", sequenceName = "SEQ_ACTIVIDAD", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_ACTIVIDAD_SEQ")
-    private long nro;
+    @GeneratedValue
+    private long id;
+    
     private String nombre;
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
@@ -57,11 +55,11 @@ public abstract class Actividad {
     protected int version;
 
     public long getNro() {
-        return nro;
+        return id;
     }
 
-    public void setNro(long nro) {
-        this.nro = nro;
+    public void setNro(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -138,7 +136,7 @@ public abstract class Actividad {
 
     @Override
     public String toString() {
-        return "Actividad [nro=" + nro + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin="
+        return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin="
                 + fechaFin + ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria="
                 + convocatoria + ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
     }

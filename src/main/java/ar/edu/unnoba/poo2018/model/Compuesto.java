@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Actividades_Compuestas")
-@PrimaryKeyJoinColumn(referencedColumnName = "nro")
+@PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class Compuesto extends Actividad {
 
     private class ImpactoEstategiaPromedio {
