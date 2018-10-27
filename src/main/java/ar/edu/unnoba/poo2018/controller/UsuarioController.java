@@ -24,18 +24,12 @@ public class UsuarioController {
 
     @EJB
     private UsuarioBean userb;
-
-    private Usuario usuario = new Usuario();
-    private List<Usuario> usuarios = new ArrayList<>();
-
-    @PostConstruct
-    public void init() {
-        usuario = new Usuario();
-        usuarios = new ArrayList<>();
-    }
-
+    private boolean administrador;
+    private String name;
+    private String password;
+    
     public String register() {
-        userb.create(usuario);
+        userb.create(new Usuario (name, password, administrador));
         return "success";
     }
 
@@ -49,27 +43,36 @@ public class UsuarioController {
     }
 
     public String login() {
-        Usuario authuser = userb.findByUser(usuario.getName(), usuario.getPassword());
+        Usuario authuser = userb.findByUser(name, password);
         if (authuser != null) {
             return "success";
         }
         return "invalid";
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public boolean isAdministrador() {
+        return administrador;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public String getName() {
+        return name;
     }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
 }

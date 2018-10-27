@@ -17,15 +17,15 @@
                     <p:messages />
                     <h:panelGrid cellpadding="10" columns="8" columnClasses="label, value">
                         <h:outputText value="Nombre de usuario: *" />
-                        <p:inputText id="username" value="#{usuarioController.usuario.name}" autocomplete="off" required="true" label="Nombre de usuario"/>
+                        <p:inputText id="username" value="#{usuarioController.name}" autocomplete="off" required="true" label="Nombre de usuario"/>
                         <p:message for="username"/>
                         <h:outputText value="Contraseña: *" />
-                        <p:password id="password" value="#{usuarioController.usuario.password}" autocomplete="off"  required="true" label="Contraseña">
+                        <p:password id="password" value="#{usuarioController.password}" autocomplete="off"  required="true" label="Contraseña">
                             <p:ajax update="msgPassword" event="keyup" />
                         </p:password>
                         <p:message for="password" id="msgPassword"/>
                         <h:outputText value="El usuario es administrador?: " />
-                        <h:selectBooleanCheckbox value="#{usuarioController.usuario.administrador}"/>
+                        <h:selectBooleanCheckbox value="#{usuarioController.administrador}"/>
                         <p:commandButton value="Registrarse" update="panelcito" action="#{usuarioController.register()}" icon="ui-icon-check"/>
                     </h:panelGrid>
                 </p:panel>

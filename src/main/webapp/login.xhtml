@@ -17,14 +17,14 @@
                     </tr>
                     <tr>
                         <td><h:outputText value="Ingrese su nombre : " /></td>
-                        <td><h:inputText id="inputName" value="#{usuarioController.usuario.name}"
+                        <td><h:inputText id="inputName" value="#{usuarioController.name}"
                                          required="true" requiredMessage="Campo de nombre no debe estar vacio" />
                         </td>
                         <td><h:message for="inputName" style="color:red" /></td>
                     </tr>
                     <tr>
                         <td><h:outputText value="Ingrese su contraseña :" /></td>
-                        <td><h:inputSecret id="inputPassword" value="#{usuarioController.usuario.password}"
+                        <td><h:inputSecret id="inputPassword" value="#{usuarioController.password}"
                                            required="true"
                                            requiredMessage="Campo de contraseña no debe estar vacio" /></td>
                         <td><h:message for="inputPassword" style="color:red" /></td>

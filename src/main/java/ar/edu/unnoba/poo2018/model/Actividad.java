@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -19,6 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.persistence.JoinColumn;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 @Table(name = "Actividades")
@@ -26,7 +28,8 @@ import javax.persistence.JoinColumn;
 public abstract class Actividad {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name="ID_ACTIVIDAD_SEQ", sequenceName="SEQ_ACTIVIDAD", allocationSize=1, initialValue=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "ID_ACTIVIDAD_SEQ")
     private long id;
     
     private String nombre;
