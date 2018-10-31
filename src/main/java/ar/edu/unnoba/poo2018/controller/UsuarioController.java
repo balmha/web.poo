@@ -32,7 +32,7 @@ public class UsuarioController {
 
     public String logout() {
         System.out.println("Desloguearse");
-        return "inicio.xhtml?faces-redirect=true";
+        return "logout";
     }
 
     public String inicio() {
@@ -42,7 +42,11 @@ public class UsuarioController {
     public String login() {
         Usuario authuser = userb.findByUser(name, password);
         if (authuser != null) {
-            return "success";
+            if (authuser.isAdministrador() == true) {
+                return "successAdmin";
+            } else {
+                return "successUser";
+            }
         }
         return "invalid";
     }
