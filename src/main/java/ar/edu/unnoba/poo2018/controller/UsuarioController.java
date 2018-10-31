@@ -6,9 +6,6 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Usuario;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.ejb.EJB;
@@ -27,9 +24,9 @@ public class UsuarioController {
     private boolean administrador;
     private String name;
     private String password;
-    
+
     public String register() {
-        userb.create(new Usuario (name, password, administrador));
+        userb.create(new Usuario(name, password, administrador));
         return "success";
     }
 
@@ -74,5 +71,4 @@ public class UsuarioController {
         this.password = password;
     }
 
-    
 }
