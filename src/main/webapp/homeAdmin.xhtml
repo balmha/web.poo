@@ -24,16 +24,10 @@
                     <li><a href="#">Resultados</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Perfil</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                    <li><a href="inicio.xhtml"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesión</a></li>
                 </ul>
             </div>
         </nav>
-        <h:form>
-            <p>
-                <!-- <h:commandLink value="Cerrar sesion" action="#{usuarioController.logout()}" /> !-->
-                <button type="button" onclick="#{usuarioController.logout()}" class="btn btn-warning">Logout</button>
-            </p>
-        </h:form>
     </h:body>
 </html>

@@ -31,7 +31,6 @@ public class UsuarioController {
     }
 
     public String logout() {
-        System.out.println("Desloguearse");
         return "logout";
     }
 
