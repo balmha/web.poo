@@ -5,38 +5,26 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <link href="css/loginCSS.css" rel="stylesheet"/>
+        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
         <title>Registro</title>
-        <link rel="stylesheet" href="usuarioCSS.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <h:form id="myForm">
-            <p:growl id="growl" sticky="true" showDetail="true"/>
-            <p:tab id="datos" title="Datos">
-                <p:panel header="Datos de usuario" id="panelcito">
-                    <p:messages />
-                    <h:panelGrid cellpadding="10" columns="8" columnClasses="label, value">
-                        <h:outputText value="Nombre de usuario: *" />
-                        <p:inputText id="username" value="#{usuarioController.name}" autocomplete="off" required="true" label="Nombre de usuario"/>
-                        <p:message for="username"/>
-                        <h:outputText value="Contraseña: *" />
-                        <p:password id="password" value="#{usuarioController.password}" autocomplete="off"  required="true" label="Contraseña">
-                            <p:ajax update="msgPassword" event="keyup" />
-                        </p:password>
-                        <p:message for="password" id="msgPassword"/>
-                        <h:outputText value="El usuario es administrador?: " />
-                        <h:selectBooleanCheckbox value="#{usuarioController.administrador}"/>
-                        <p:commandButton value="Registrarse" update="panelcito" action="#{usuarioController.register()}" icon="ui-icon-check"/>
-                    </h:panelGrid>
-                </p:panel>
-            </p:tab>
-        </h:form>
-        <br/>
-        <h:form >
-            <div align="center" draggable="false" >
-                <p:commandLink action="#{usuarioController.inicio()}" value="Inicio">
-                </p:commandLink>
-            </div>
-        </h:form>
+        <h:outputLink style="position: absolute; top: 8px;left: 16px;font-size: 18px;"
+                      class="btn btn-lg btn-primary" value="inicio.xhtml">Inicio</h:outputLink>
+        <div class="container">
+            <h:form class="form-signin">
+                <h2 class="form-signin-heading">Please Register</h2><br/>
+                <h:outputText class="sr-only" value="Nombre de usuario: *" />
+                <h:inputText autocomplete="off" class="form-control" id="inputName" value="#{usuarioController.name}" required="true"/><br/>
+                <h:outputText class="sr-only" value="Contraseña :*" />
+                <h:inputSecret autocomplete="off" id="inputPassword" class="form-control" value="#{usuarioController.password}"
+                               required="true"/><br/>
+                <h:outputText value="El usuario es administrador?: " />
+                <h:selectBooleanCheckbox value="#{usuarioController.administrador}"/><br/><br/>
+                <p:commandButton value="Registrarse" action="#{usuarioController.register()}" icon="ui-icon-check"/> <br/>
+            </h:form>
+        </div>
     </h:body>
 </html>
