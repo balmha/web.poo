@@ -9,47 +9,66 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "Objetivos")
+@Table(name = "Objetivo")
 public class Objetivo {
-	
-	@Id
-	@SequenceGenerator(name="ID_OBJETIVO_SEQ", sequenceName="SEQ_OBJETIVO", allocationSize=1, initialValue=1)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "ID_OBJETIVO_SEQ")
-	private long nro;
-	
-	private String nombre;
 
-	@Version
-	protected int version;
+    @Id
+    @SequenceGenerator(name = "ID_OBJETIVO_SEQ", sequenceName = "SEQ_OBJETIVO", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_OBJETIVO_SEQ")
+    private long nro;
+    private String nombre;
+    boolean editable;
 
-	public long getNro() {
-		return nro;
-	}
-	public void setNro(long nro) {
-		this.nro = nro;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj)
-				return true;
-		return nombre.equals(((Objetivo)obj).getNombre());
-	}
-	
-	@Override
-	public int hashCode() {
-		return nombre.hashCode();
-	}
-	@Override
-	public String toString() {
-		return "Objetivo [nro=" + nro + ", nombre=" + nombre + "]";
-	}
-	
+    public Objetivo() {
+    }
+
+    public Objetivo(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Version
+    protected int version;
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
+
+    public long getNro() {
+        return nro;
+    }
+
+    public void setNro(long nro) {
+        this.nro = nro;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        return nombre.equals(((Objetivo) obj).getNombre());
+    }
+
+    @Override
+    public int hashCode() {
+        return nombre.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Objetivo [nro=" + nro + ", nombre=" + nombre + "]";
+    }
+
 }

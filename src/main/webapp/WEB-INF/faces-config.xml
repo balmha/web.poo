@@ -13,19 +13,19 @@
         <description>login user</description>
         <from-view-id>/login.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{usuarioController.login()}</from-action>
+            <from-action>#{loginController.login()}</from-action>
             <from-outcome>successAdmin</from-outcome>
             <to-view-id>/homeAdmin.xhtml</to-view-id>
         </navigation-case>
 
         <navigation-case>
-            <from-action>#{usuarioController.login()}</from-action>
+            <from-action>#{loginController.login()}</from-action>
             <from-outcome>successUser</from-outcome>
             <to-view-id>/homeUser.xhtml</to-view-id>
         </navigation-case>
 
         <navigation-case>
-            <from-action>#{usuarioController.login()}</from-action>
+            <from-action>#{loginController.login()}</from-action>
             <from-outcome>invalid</from-outcome>
             <to-view-id>/error.xhtml</to-view-id>
         </navigation-case>
@@ -49,9 +49,19 @@
     <navigation-rule>
         <description>logout</description>
         <navigation-case>
-            <from-action>#{usuarioController.logout()}</from-action>
+            <from-action>#{loginController.logout()}</from-action>
             <from-outcome>logout</from-outcome>
             <to-view-id>/inicio.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <description>SaveObjetivo</description>
+        <navigation-case>
+            <from-action>#{objetivoController.save()}</from-action>
+            <from-outcome>successSave</from-outcome>
+            <to-view-id>/ObjetivosAdminPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

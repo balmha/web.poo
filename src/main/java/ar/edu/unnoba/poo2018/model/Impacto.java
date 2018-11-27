@@ -11,54 +11,57 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "Impactos")
+@Table(name = "Impacto")
 public class Impacto {
-	
-	@Id
-	@SequenceGenerator(name="ID_IMPACTO_SEQ", sequenceName="SEQ_IMPACTO", allocationSize=1, initialValue=1)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "ID_IMPACTO_SEQ")
-	private long nro;
-	
-	private int peso;
-	
-	@Version
-	protected int version;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Objetivo objetivo;
+    @Id
+    @SequenceGenerator(name = "ID_IMPACTO_SEQ", sequenceName = "SEQ_IMPACTO", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_IMPACTO_SEQ")
+    private long nro;
 
-	public Impacto() {
-	}
-	
-	public Impacto(int peso, Objetivo objetivo) {
-		this.peso = peso;
-		this.objetivo = objetivo;
-	}
+    private int peso;
 
-	public long getNro() {
-		return nro;
-	}
-	public void setNro(long nro) {
-		this.nro = nro;
-	}
+    @Version
+    protected int version;
 
-	public int getPeso() {
-		return peso;
-	}
-	public void setPeso(int peso) {
-		this.peso = peso;
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Objetivo objetivo;
 
-	public Objetivo getObjetivo() {
-		return objetivo;
-	}
-	public void setObjetivo(Objetivo objetivo) {
-		this.objetivo = objetivo;
-	}
+    public Impacto() {
+    }
 
-	@Override
-	public String toString() {
-		return "Impacto [nro=" + nro + ", peso=" + peso + ", objetivo=" + objetivo + "]";
-	}
-	
+    public Impacto(int peso, Objetivo objetivo) {
+        this.peso = peso;
+        this.objetivo = objetivo;
+    }
+
+    public long getNro() {
+        return nro;
+    }
+
+    public void setNro(long nro) {
+        this.nro = nro;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public Objetivo getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(Objetivo objetivo) {
+        this.objetivo = objetivo;
+    }
+
+    @Override
+    public String toString() {
+        return "Impacto [nro=" + nro + ", peso=" + peso + ", objetivo=" + objetivo + "]";
+    }
+
 }
