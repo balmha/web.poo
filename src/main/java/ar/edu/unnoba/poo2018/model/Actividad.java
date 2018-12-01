@@ -23,15 +23,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table(name = "Actividades")
+@Table(name = "Actividad")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Actividad {
 
     @Id
-    @SequenceGenerator(name="ID_ACTIVIDAD_SEQ", sequenceName="SEQ_ACTIVIDAD", allocationSize=1, initialValue=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "ID_ACTIVIDAD_SEQ")
+    @SequenceGenerator(name = "ID_ACTIVIDAD_SEQ", sequenceName = "SEQ_ACTIVIDAD", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_ACTIVIDAD_SEQ")
     private long id;
-    
+
     private String nombre;
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;

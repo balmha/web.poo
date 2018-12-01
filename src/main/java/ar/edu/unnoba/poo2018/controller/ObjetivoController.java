@@ -6,9 +6,8 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Objetivo;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,18 +19,61 @@ import persistencePackage.ObjetivoBean;
  */
 @ManagedBean(name = "objetivoController")
 @SessionScoped
-public class ObjetivoController {
+public class ObjetivoController implements Serializable {
 
     @EJB
     private ObjetivoBean objetivob;
+    private String nombre;
+    private String nombreUpdate;
+    private List<Objetivo> objetivosList;
 
-    private Objetivo objetivo = new Objetivo();
-    private List<Objetivo> objetivos = new ArrayList<>();
+    public String save() {
+        objetivob.create(new Objetivo(nombre));
+        return "successSave";
+    }
 
-    @PostConstruct
-    public void init() {
-        objetivo = new Objetivo();
-        objetivos = new ArrayList<>();
+    public List getObjetivos() {
+        objetivosList = objetivob.getObjetivos();
+        if (objetivosList != null) {
+            return objetivosList;
+        } else {
+            System.out.println("Se pudrió todo");
+            return objetivosList;
+        }
+    }
+
+    public String deleteObjetivo(Objetivo o) {
+        objetivob.remove(o);
+        return null;
+    }
+
+    public String editAction(Objetivo o) {
+        o.setEditable(true);
+        objetivob.Update(o);
+        return null;
+    }
+
+    public String saveUpdate(Objetivo o, String updatenom) {
+        o.setNombre(updatenom);
+        o.setEditable(false);
+        objetivob.Update(o);
+        return null;
+    }
+
+    public String getNombreUpdate() {
+        return nombreUpdate;
+    }
+
+    public void setNombreUpdate(String nombreUpdate) {
+        this.nombreUpdate = nombreUpdate;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

@@ -1,23 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Usuario;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import persistencePackage.UsuarioBean;
 
 /**
  *
  * @author Balma
  */
-@ManagedBean(name = "usuarioController")
-@RequestScoped
-public class UsuarioController {
+@ManagedBean(name = "loginController")
+@SessionScoped
+public class LoginController {
 
     @EJB
     private UsuarioBean userb;
@@ -25,9 +21,22 @@ public class UsuarioController {
     private String name;
     private String password;
 
-    public String register() {
-        userb.create(new Usuario(name, password, administrador));
-        return "success";
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "logout";
+    }
+
+    public String login() {
+        Usuario authuser = userb.findByUser(name, password);
+        if (authuser != null) {
+            if (authuser.isAdministrador() == true) {
+                return "successAdmin";
+            } else {
+                return "successUser";
+            }
+        }
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "invalid";
     }
 
     public boolean isAdministrador() {

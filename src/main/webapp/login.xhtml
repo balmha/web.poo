@@ -14,12 +14,12 @@
             <h:form class="form-signin">
                 <h2 class="form-signin-heading">Inicie sesión</h2>
                 <h:outputText class="sr-only" value="Ingrese su nombre : " />
-                <h:inputText  class="form-control" id="inputName" value="#{usuarioController.name}" required="true"/>
+                <h:inputText  class="form-control" id="inputName" value="#{loginController.name}" required="true"/>
                 <h:outputText class="sr-only" value="Ingrese su contraseña :" />
-                <h:inputSecret id="inputPassword" class="form-control" value="#{usuarioController.password}"
+                <h:inputSecret id="inputPassword" class="form-control" value="#{loginController.password}"
                                required="true"/>
                 <tr>
-                    <td><h:commandButton class="btn btn-lg btn-primary btn-block" value="Iniciar sesion" action="#{usuarioController.login()}"/></td><br/>
+                    <td><h:commandButton class="btn btn-lg btn-primary btn-block" value="Iniciar sesion" action="#{loginController.login()}"/></td><br/>
                     <td><h:outputText value="No es un usuario? " />
                         <h:outputLink value="register2.xhtml">Registrese</h:outputLink>
                     </td>
