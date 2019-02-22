@@ -13,9 +13,8 @@ import javax.persistence.Version;
 public class Convocatoria {
 
     @Id
-    @SequenceGenerator(name = "ID_CONVOCATORIA_SEQ", sequenceName = "SEQ_CONVOCATORIA", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_CONVOCATORIA_SEQ")
-    private long nro;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long nro;
 
     private String nombre;
 

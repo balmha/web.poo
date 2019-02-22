@@ -28,9 +28,8 @@ import javax.persistence.SequenceGenerator;
 public abstract class Actividad {
 
     @Id
-    @SequenceGenerator(name = "ID_ACTIVIDAD_SEQ", sequenceName = "SEQ_ACTIVIDAD", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_ACTIVIDAD_SEQ")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String nombre;
     @Temporal(TemporalType.DATE)

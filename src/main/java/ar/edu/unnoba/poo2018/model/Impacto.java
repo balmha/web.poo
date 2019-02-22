@@ -15,9 +15,8 @@ import javax.persistence.Version;
 public class Impacto {
 
     @Id
-    @SequenceGenerator(name = "ID_IMPACTO_SEQ", sequenceName = "SEQ_IMPACTO", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_IMPACTO_SEQ")
-    private long nro;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long nro;
 
     private int peso;
 

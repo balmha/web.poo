@@ -13,9 +13,8 @@ import javax.persistence.Version;
 public class Ambito {
 
     @Id
-    @SequenceGenerator(name = "ID_AMBITO_SEQ", sequenceName = "SEQ_AMBITO", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_AMBITO_SEQ")
-    private long nro;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long nro;
 
     private String nombre;
 
