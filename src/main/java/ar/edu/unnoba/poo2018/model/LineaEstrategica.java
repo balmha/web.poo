@@ -13,9 +13,8 @@ import javax.persistence.Version;
 public class LineaEstrategica {
 
 	@Id
-	@SequenceGenerator(name="ID_LINEAESTRATEGICA_SEQ", sequenceName="SEQ_LINEAESTRATEGICA", allocationSize=1, initialValue=1)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "ID_LINEAESTRATEGICA_SEQ")
-	private long nro;
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Long nro;
 	
 	private String nombre;
 	

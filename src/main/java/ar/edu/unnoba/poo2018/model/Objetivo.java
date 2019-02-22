@@ -13,9 +13,8 @@ import javax.persistence.Version;
 public class Objetivo {
 
     @Id
-    @SequenceGenerator(name = "ID_OBJETIVO_SEQ", sequenceName = "SEQ_OBJETIVO", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_OBJETIVO_SEQ")
-    private long nro;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long nro;
     private String nombre;
     boolean editable;
 
