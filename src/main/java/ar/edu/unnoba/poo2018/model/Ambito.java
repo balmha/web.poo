@@ -22,6 +22,13 @@ public class Ambito {
     @Version
     protected int version;
 
+    public Ambito() {
+    }
+
+    public Ambito(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getNombre() {
         return nombre;
     }

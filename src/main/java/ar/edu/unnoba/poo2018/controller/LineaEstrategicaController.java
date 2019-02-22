@@ -6,12 +6,10 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.LineaEstrategica;
-import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import persistencePackage.LineaEstrategicaBean;
 
 /**
@@ -19,19 +17,35 @@ import persistencePackage.LineaEstrategicaBean;
  * @author Balma
  */
 @ManagedBean(name = "lineaEstrategicaController")
-@SessionScoped
+@ViewScoped
 public class LineaEstrategicaController {
 
     @EJB
     private LineaEstrategicaBean lineaEstrategicab;
+    private String nombre;
+    private List<LineaEstrategica> lineasList;
 
-    private LineaEstrategica lineaEstrategica = new LineaEstrategica();
-    private List<LineaEstrategica> lineaEstrategicas = new ArrayList<>();
+    public String getNombre() {
+        return nombre;
+    }
 
-    @PostConstruct
-    public void init() {
-        lineaEstrategica = new LineaEstrategica();
-        lineaEstrategicas = new ArrayList<>();
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void save() {
+        lineaEstrategicab.create(new LineaEstrategica(nombre));
+        this.nombre = null;
+    }
+
+    public List getLineas() {
+        lineasList = lineaEstrategicab.getLineas();
+        if (lineasList != null) {
+            return lineasList;
+        } else {
+            System.out.println("Se pudrió todo");
+            return lineasList;
+        }
     }
 
 }

@@ -12,32 +12,42 @@ import javax.persistence.Version;
 @Table(name = "Lineas")
 public class LineaEstrategica {
 
-	@Id
-	@SequenceGenerator(name="ID_LINEAESTRATEGICA_SEQ", sequenceName="SEQ_LINEAESTRATEGICA", allocationSize=1, initialValue=1)
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator= "ID_LINEAESTRATEGICA_SEQ")
-	private long nro;
-	
-	private String nombre;
-	
-	@Version
-	protected int version;
+    @Id
+    @SequenceGenerator(name = "ID_LINEAESTRATEGICA_SEQ", sequenceName = "SEQ_LINEAESTRATEGICA", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_LINEAESTRATEGICA_SEQ")
+    private long nro;
 
-	public long getNro() {
-		return nro;
-	}
-	public void setNro(long nro) {
-		this.nro = nro;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	@Override
-	public String toString() {
-		return "LineaEstrategica [nro=" + nro + ", nombre=" + nombre + "]";
-	}
-	
+    private String nombre;
+
+    @Version
+    protected int version;
+
+    public LineaEstrategica() {
+    }
+
+    public LineaEstrategica(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public long getNro() {
+        return nro;
+    }
+
+    public void setNro(long nro) {
+        this.nro = nro;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "LineaEstrategica [nro=" + nro + ", nombre=" + nombre + "]";
+    }
+
 }

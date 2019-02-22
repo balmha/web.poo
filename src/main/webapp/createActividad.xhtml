@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="calendar_es.js"/>
+        <title>Crear Objetivo</title>
+        <style type="text/css">
+            .btnWidth {
+                width: 80px;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <ui:decorate template="templateAdmin.xhtml">
+            <ui:define name="contenido">
+                <div class="container">
+                    <h:form id="createActividadForm">
+                        <p:growl id="growl" showDetail="true" sticky="true" />
+                        <p:panel header="Creación de actividades">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p:outputLabel for="fechainicio" value="Fecha de inicio"/><span> </span>
+                                    <p:calendar id="fechainicio" value="#{actividadController.fechaInicio}" showOn="button" pattern="dd/MM/yyyy" locale="es"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <p:outputLabel for="fechafin" value="Fecha de fin"/><span> </span>
+                                    <p:calendar id="fechafin" value="#{actividadController.fechaFin}" showOn="button" pattern="dd/MM/yyyy" locale="es"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <h:outputLabel for="name">Nombre:</h:outputLabel>
+                                <h:inputText id="name" value="#{actividadController.nombre}" class="form-control" validatorMessage="Nombre es requerido">
+                                    <f:validateRequired />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <h:outputLabel for="resolucion">Resolución:</h:outputLabel>
+                                <h:inputText id="resolucion" value="#{actividadController.resolucion}" class="form-control" validatorMessage="Resolución es requerido">
+                                    <f:validateRequired />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <h:outputLabel for="expediente">Expediente:</h:outputLabel>
+                                <h:inputTextarea cols="50" rows="4" id="expediente" value="#{actividadController.expediente}" class="form-control" validatorMessage="Expediente es requerido">
+                                    <f:validateRequired />
+                                </h:inputTextarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <p:commandLink oncomplete="PF('agregarConvocatoria').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
+                                    <h:outputLabel for="convocatoria">Convocatoria</h:outputLabel><span> </span>
+                                    <h:selectOneMenu id="convocatoria" value="#{actividadController.convocatoria}">
+                                        <f:selectItems value="#{convocatoriaController.convocatorias}" var="c"
+                                                       itemLabel="#{c.nombre}" itemValue="#{c.nro}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <p:commandLink oncomplete="PF('agregarLinea').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
+                                    <h:outputLabel for="LineaEstrategica">Línea Estratégica</h:outputLabel><span> </span>
+                                    <h:selectOneMenu id="LineaEstrategica" value="#{actividadController.linea}">
+                                        <f:selectItems value="#{lineaEstrategicaController.lineas}" var="l"
+                                                       itemLabel="#{l.nombre}" itemValue="#{l.nro}" />
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <p:commandLink oncomplete="PF('agregarAmbito').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
+                                    <h:outputLabel for="ambito">Ámbito</h:outputLabel><span> </span>
+                                    <h:selectOneMenu id="ambito" value="#{actividadController.ambito}">
+                                        <f:selectItems value="#{ambitoController.ambitos}" var="a"
+                                                       itemLabel="#{a.nombre}" itemValue="#{a.nro}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:commandButton value="Guardar" action="#{actividadController.save()}" class="btn btn-success btnWidth" />
+                            </div>
+                        </p:panel>
+                    </h:form>
+
+                    <p:dialog header="Agregar Ámbito" modal="true" height="200" width="400"
+                              widgetVar="agregarAmbito">
+                        <h:form id="formAmb">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Nombre:" />
+                                <h:inputText value="#{ambitoController.nombre}" /><br/>
+                            </h:panelGrid>
+                            <p:commandButton value="Agregar" action="#{ambitoController.save()}"
+                                             process="@form" update="@form :formAmb"/>
+                        </h:form>
+                    </p:dialog>
+
+                    <p:dialog header="Agregar Linea Estratégica" modal="true" height="200" width="400"
+                              widgetVar="agregarLinea">
+                        <h:form id="formLin">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Nombre: " />
+                                <h:inputText  value="#{lineaEstrategicaController.nombre}" /><br/>
+                            </h:panelGrid>
+                            <p:commandButton value="Agregar" action="#{lineaEstrategicaController.save()}"
+                                             process="@form" update="@form :formLin"/>
+                        </h:form>
+                    </p:dialog>
+
+                    <p:dialog header="Agregar Convocatoria" modal="true" height="200" width="400"
+                              widgetVar="agregarConvocatoria">
+                        <h:form id="formConv">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Nombre: " />
+                                <h:inputText  value="#{convocatoriaController.nombre}" /><br/>
+                            </h:panelGrid>
+                            <p:commandButton value="Agregar" action="#{convocatoriaController.save()}"
+                                             process="@form" update="@form :formConv"/>
+                        </h:form>
+                    </p:dialog>
+
+                </div>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>

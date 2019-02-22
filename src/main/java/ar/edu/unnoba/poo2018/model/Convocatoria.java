@@ -22,6 +22,13 @@ public class Convocatoria {
     @Version
     protected int version;
 
+    public Convocatoria() {
+    }
+
+    public Convocatoria(String nombre) {
+        this.nombre = nombre;
+    }
+
     public long getNro() {
         return nro;
     }
