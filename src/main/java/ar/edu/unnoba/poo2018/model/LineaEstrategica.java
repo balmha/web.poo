@@ -21,11 +21,6 @@ public class LineaEstrategica {
 	@Version
 	protected int version;
 
-    private String nombre;
-
-    @Version
-    protected int version;
-
     public LineaEstrategica() {
     }
 
