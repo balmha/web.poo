@@ -1,11 +1,9 @@
 package ar.edu.unnoba.poo2018.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -45,14 +43,15 @@ public abstract class Actividad implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Ambito ambito;
 
-    //@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    //@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "Responsables",
             joinColumns = @JoinColumn(name = "actividad_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
     @ManyToMany
     private List<Usuario> responsables;
+    
+    @ManyToMany(mappedBy="actividades")
+    private List<Compuesto> compuestas;
 
     public Actividad() {
     }

@@ -7,6 +7,7 @@ package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Actividad;
 import ar.edu.unnoba.poo2018.model.Ambito;
+import ar.edu.unnoba.poo2018.model.Compuesto;
 import ar.edu.unnoba.poo2018.model.Convocatoria;
 import ar.edu.unnoba.poo2018.model.Impacto;
 import ar.edu.unnoba.poo2018.model.LineaEstrategica;
@@ -46,7 +47,7 @@ public class ActividadController implements Serializable {
     private List<Usuario> responsables = new ArrayList<>();
     private List<Impacto> impactos = new ArrayList<>();
 
-    private List<Actividad> actividades = new ArrayList<>();
+    private List<Compuesto> actividadesCompuestas = new ArrayList<>();
     private List<Simple> actividadesSimples = new ArrayList<>();
 
     public String save() {
@@ -55,8 +56,8 @@ public class ActividadController implements Serializable {
         return "SuccessSave";
     }
 
-    public List getActividades() {
-        return actividades;
+    public List getActividadesCompuestas() {
+        return actividadesCompuestas;
     }
     
     public List getActividadesSimples() {

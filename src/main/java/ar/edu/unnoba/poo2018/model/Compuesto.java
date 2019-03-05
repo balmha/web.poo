@@ -1,10 +1,10 @@
 package ar.edu.unnoba.poo2018.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -15,14 +15,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Actividades_Compuestas")
 @PrimaryKeyJoinColumn(referencedColumnName = "id")
-public class Compuesto extends Actividad {
+public class Compuesto extends Actividad implements Serializable{
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "Actividades_Relacionadas",
             joinColumns = @JoinColumn(name = "actividad_compuesta_id"),
             inverseJoinColumns = @JoinColumn(name = "actividad_id")
     )
-    private List<Actividad> actividades = new ArrayList<>();
+    @ManyToMany
+    private List<Actividad> actividades;
 
     public Compuesto(){};
         
