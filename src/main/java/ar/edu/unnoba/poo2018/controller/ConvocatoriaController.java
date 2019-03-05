@@ -6,6 +6,7 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Convocatoria;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,9 +17,9 @@ import persistencePackage.ConvocatoriaBean;
  *
  * @author Balma
  */
-@ManagedBean(name = "convocatoriaController")
+@ManagedBean
 @ViewScoped
-public class ConvocatoriaController {
+public class ConvocatoriaController implements Serializable{
 
     @EJB
     private ConvocatoriaBean convocatoriab;

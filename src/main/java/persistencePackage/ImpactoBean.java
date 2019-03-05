@@ -19,5 +19,21 @@ public class ImpactoBean {
 
     @PersistenceContext(unitName = "webpoo")
     EntityManager em;
+    
+    public void create(Impacto i) {
+        em.persist(i);
+    }
+
+    public void Update(Impacto i) {
+        em.merge(i);
+    }
+
+    public void remove(Impacto i) {
+        em.remove(em.merge(i));
+    }
+
+    public Impacto find(Object nro) {
+        return em.find(Impacto.class, nro);
+    }
 
 }

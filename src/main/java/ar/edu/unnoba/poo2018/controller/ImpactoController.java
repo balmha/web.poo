@@ -6,9 +6,9 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Impacto;
-import java.util.ArrayList;
+import ar.edu.unnoba.poo2018.model.Objetivo;
+import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,20 +18,29 @@ import persistencePackage.ImpactoBean;
  *
  * @author Balma
  */
-@ManagedBean(name = "impactoController")
+@ManagedBean
 @SessionScoped
-public class ImpactoController {
-
+public class ImpactoController implements Serializable{
+    
     @EJB
     private ImpactoBean impactob;
+    private int peso;
+    private Objetivo objetivo;
+    private List<Impacto> impactos;
 
-    private Impacto impacto = new Impacto();
-    private List<Impacto> impactos = new ArrayList<>();
-
-    @PostConstruct
-    public void init() {
-        impacto = new Impacto();
-        impactos = new ArrayList<>();
+    public int getPeso() {
+        return peso;
     }
 
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public Objetivo getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(Objetivo objetivo) {
+        this.objetivo = objetivo;
+    }
 }

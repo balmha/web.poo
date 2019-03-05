@@ -6,6 +6,7 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Ambito;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,9 +17,9 @@ import persistencePackage.AmbitoBean;
  *
  * @author Balma
  */
-@ManagedBean(name = "ambitoController")
+@ManagedBean
 @ViewScoped
-public class AmbitoController {
+public class AmbitoController implements Serializable{
 
     @EJB
     private AmbitoBean ambitob;

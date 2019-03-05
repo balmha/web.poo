@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
@@ -61,6 +60,15 @@
             <from-action>#{objetivoController.save()}</from-action>
             <from-outcome>successSave</from-outcome>
             <to-view-id>/ObjetivosAdminPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <description>SaveSimple</description>
+        <navigation-case>
+            <from-action>#{actividadController.save()}</from-action>
+            <from-outcome>SuccessSave</from-outcome>
+            <to-view-id>/homeAdmin.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

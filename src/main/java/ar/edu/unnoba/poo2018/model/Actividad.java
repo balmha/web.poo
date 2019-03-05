@@ -1,5 +1,6 @@
 package ar.edu.unnoba.poo2018.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +9,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -20,15 +20,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.persistence.JoinColumn;
-import javax.persistence.SequenceGenerator;
 
 @Entity
 @Table(name = "Actividad")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Actividad {
+public abstract class Actividad implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
     private Long id;
 
     private String nombre;
@@ -46,13 +45,30 @@ public abstract class Actividad {
     @ManyToOne(fetch = FetchType.LAZY)
     private Ambito ambito;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "Responsables",
             joinColumns = @JoinColumn(name = "actividad_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    private List<Usuario> responsables = new ArrayList<Usuario>();
+    @ManyToMany
+    private List<Usuario> responsables;
 
+    public Actividad() {
+    }
+
+    public Actividad(String nombre, Date fechaInicio, Date fechaFin, String resolucion, String expediente, Ambito ambito, Convocatoria convocatoria, LineaEstrategica lineaEstrategica, List<Usuario> responsables) {
+        this.nombre = nombre;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.resolucion = resolucion;
+        this.expediente = expediente;
+        this.ambito = ambito;
+        this.convocatoria = convocatoria;
+        this.linea = lineaEstrategica;
+        this.responsables = responsables;
+    }
+    
     @Version
     protected int version;
 
@@ -142,7 +158,5 @@ public abstract class Actividad {
                 + fechaFin + ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria="
                 + convocatoria + ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
     }
-
-    public abstract List<Impacto> getImpactos();
 
 }

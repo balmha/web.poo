@@ -6,6 +6,7 @@
 package persistencePackage;
 
 import ar.edu.unnoba.poo2018.model.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -48,5 +49,16 @@ public class UsuarioBean {
             userq = null;
         }
         return userq;
+    }
+    
+    public List getAll() {
+        Query query = em.createQuery("SELECT u FROM Usuario u");
+        List<Usuario> usuariosList;
+        try {
+            usuariosList = query.getResultList();
+        } catch (Exception e) {
+            usuariosList = null;
+        }
+        return usuariosList;
     }
 }

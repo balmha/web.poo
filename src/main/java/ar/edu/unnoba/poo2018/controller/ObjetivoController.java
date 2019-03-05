@@ -17,7 +17,7 @@ import persistencePackage.ObjetivoBean;
  *
  * @author Balma
  */
-@ManagedBean(name = "objetivoController")
+@ManagedBean
 @SessionScoped
 public class ObjetivoController implements Serializable {
 
@@ -37,7 +37,6 @@ public class ObjetivoController implements Serializable {
         if (objetivosList != null) {
             return objetivosList;
         } else {
-            System.out.println("Se pudrió todo");
             return objetivosList;
         }
     }

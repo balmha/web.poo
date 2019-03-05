@@ -3,7 +3,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
@@ -56,30 +59,45 @@
                                 <div class="form-group col-md-4">
                                     <p:commandLink oncomplete="PF('agregarConvocatoria').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
                                     <h:outputLabel for="convocatoria">Convocatoria</h:outputLabel><span> </span>
-                                    <h:selectOneMenu id="convocatoria" value="#{actividadController.convocatoria}">
+                                    <h:selectOneMenu id="convocatoria" value="#{actividadController.convocatoria}" converter="omnifaces.SelectItemsConverter">
                                         <f:selectItems value="#{convocatoriaController.convocatorias}" var="c"
-                                                       itemLabel="#{c.nombre}" itemValue="#{c.nro}" />
+                                                       itemLabel="#{c.nombre}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <p:commandLink oncomplete="PF('agregarLinea').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
                                     <h:outputLabel for="LineaEstrategica">Línea Estratégica</h:outputLabel><span> </span>
-                                    <h:selectOneMenu id="LineaEstrategica" value="#{actividadController.linea}">
+                                    <h:selectOneMenu id="LineaEstrategica" value="#{actividadController.linea}" converter="omnifaces.SelectItemsConverter">
                                         <f:selectItems value="#{lineaEstrategicaController.lineas}" var="l"
-                                                       itemLabel="#{l.nombre}" itemValue="#{l.nro}" />
+                                                       itemLabel="#{l.nombre}"/>
                                     </h:selectOneMenu>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <p:commandLink oncomplete="PF('agregarAmbito').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
                                     <h:outputLabel for="ambito">Ámbito</h:outputLabel><span> </span>
-                                    <h:selectOneMenu id="ambito" value="#{actividadController.ambito}">
+                                    <h:selectOneMenu id="ambito" value="#{actividadController.ambito}" converter="omnifaces.SelectItemsConverter">
                                         <f:selectItems value="#{ambitoController.ambitos}" var="a"
-                                                       itemLabel="#{a.nombre}" itemValue="#{a.nro}" />
+                                                       itemLabel="#{a.nombre}"/>
                                     </h:selectOneMenu>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <p:outputLabel for="user" value="Usuarios: " />
+                                        <p:selectManyMenu id="user" value="#{actividadController.responsables}" converter="omnifaces.SelectItemsConverter"
+                                                          var="u" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                            <f:selectItems value="#{usuarioController.getUsuarios()}"/>
+                                            <p:column>
+                                                <h:outputText value="#{u.name}" />
+                                            </p:column>
+                                        </p:selectManyMenu>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <p:commandLink oncomplete="PF('agregarImpacto').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
+                                    <h:outputLabel>Impacto</h:outputLabel><span> </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h:commandButton value="Guardar" action="#{actividadController.save()}" class="btn btn-success btnWidth" />
+                                <h:commandButton value="Guardar" action="#{actividadController.save()}" class="btn btn-success btnWidth">
+                                </h:commandButton>
                             </div>
                         </p:panel>
                     </h:form>
@@ -117,6 +135,23 @@
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{convocatoriaController.save()}"
                                              process="@form" update="@form :formConv"/>
+                        </h:form>
+                    </p:dialog>
+                    
+                    <p:dialog header="Agregar Impacto" modal="true" height="200" width="400"
+                              widgetVar="agregarImpacto">
+                        <h:form id="formImp">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Peso: " />
+                                <h:inputText  id="pesoI" value="#{impactoController.peso}" /><br/>
+                                <h:outputLabel for="objetivoI" value="Objetivo: "/><span> </span>
+                                <h:selectOneMenu id="objetivoI" value="#{impactoController.objetivo}" converter="omnifaces.SelectItemsConverter">
+                                    <f:selectItems value="#{objetivoController.getObjetivos()}" var="o"
+                                                       itemLabel="#{o.nombre}"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <p:commandButton value="Agregar" action="#{actividadController.addImpactos(impactoController.objetivo,impactoController.peso)}"
+                                             process="@form" update="@form :formImp"/>
                         </h:form>
                     </p:dialog>
 

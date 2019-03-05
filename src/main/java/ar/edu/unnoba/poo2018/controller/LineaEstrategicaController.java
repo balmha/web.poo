@@ -6,6 +6,7 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.LineaEstrategica;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,9 +17,9 @@ import persistencePackage.LineaEstrategicaBean;
  *
  * @author Balma
  */
-@ManagedBean(name = "lineaEstrategicaController")
+@ManagedBean
 @ViewScoped
-public class LineaEstrategicaController {
+public class LineaEstrategicaController implements Serializable{
 
     @EJB
     private LineaEstrategicaBean lineaEstrategicab;

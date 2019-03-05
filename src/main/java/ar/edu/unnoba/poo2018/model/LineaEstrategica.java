@@ -1,25 +1,24 @@
 package ar.edu.unnoba.poo2018.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
 @Table(name = "Lineas")
-public class LineaEstrategica {
+public class LineaEstrategica implements Serializable {
 
-	@Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long nro;
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
+    private Long nro;
 	
-	private String nombre;
+    private String nombre;
 	
-	@Version
-	protected int version;
+    @Version
+    protected int version;
 
     public LineaEstrategica() {
     }
@@ -45,8 +44,24 @@ public class LineaEstrategica {
     }
 
     @Override
-    public String toString() {
-        return "LineaEstrategica [nro=" + nro + ", nombre=" + nombre + "]";
+	public String toString() {
+		return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+	}
+	
+    @Override
+    public int hashCode() {
+        return (getNombre() != null) 
+            ? (getClass().getSimpleName().hashCode() + getNombre().hashCode())
+            : super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return (other != null && getNombre() != null
+                && other.getClass().isAssignableFrom(getClass()) 
+                && getClass().isAssignableFrom(other.getClass())) 
+            ? getNombre().equals(((LineaEstrategica) other).getNombre())
+            : (other == this);
     }
 
 }

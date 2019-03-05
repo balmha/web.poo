@@ -1,20 +1,20 @@
 package ar.edu.unnoba.poo2018.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
 @Table(name = "Objetivo")
-public class Objetivo {
+public class Objetivo implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
     private Long nro;
+    
     private String nombre;
     boolean editable;
 

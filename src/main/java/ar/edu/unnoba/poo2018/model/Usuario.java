@@ -1,24 +1,27 @@
 package ar.edu.unnoba.poo2018.model;
 
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.ManyToMany;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY )
     private Long id;
 
     private String name;
     private String password;
     private boolean administrador;
+    @ManyToMany(mappedBy="responsables")
+    private List<Actividad> actividadCollection;
 
     public Usuario() {
     }
@@ -32,7 +35,7 @@ public class Usuario {
     @Version
     protected int version;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -65,8 +68,24 @@ public class Usuario {
     }
 
     @Override
-    public String toString() {
-        return "Usuario [nombre=" + name + ", password=" + password + ", administrador=" + administrador + "]";
+	public String toString() {
+		return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
+	}
+	
+    @Override
+    public int hashCode() {
+        return (getName() != null) 
+            ? (getClass().getSimpleName().hashCode() + getName().hashCode())
+            : super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return (other != null && getName() != null
+                && other.getClass().isAssignableFrom(getClass()) 
+                && getClass().isAssignableFrom(other.getClass())) 
+            ? getName().equals(((Usuario) other).getName())
+            : (other == this);
     }
 
 }

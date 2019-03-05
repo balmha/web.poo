@@ -1,39 +1,43 @@
 package ar.edu.unnoba.poo2018.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Actividades_Simples")
-@PrimaryKeyJoinColumn(referencedColumnName="id")
-public class Simple extends Actividad {
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "actividad")
-	private List<Impacto> impactos = new ArrayList<Impacto>();
+@NamedQueries({
+    @NamedQuery(name = "simple.getAllActividadSimple",
+            query = "Select a From Simple a")
+})
+public class Simple extends Actividad implements Serializable {
+    
+        @OneToMany(cascade = CascadeType.ALL)
+        @JoinColumn(name="actividad_id")
+        private List<Impacto> impactos;
+        
+        public Simple(){};
+        
+        public Simple(String nombre,Date fI,Date fF, String res,String exp,Convocatoria conv,
+                LineaEstrategica lin,Ambito amb,List<Usuario> resp,List<Impacto> imp){
+            super(nombre, fI, fF, res, exp, amb, conv, lin, resp);
+            this.impactos=imp;
+        }
 
-	public void addObjetivo(int peso, Objetivo objetivo) {
-		impactos.add(new Impacto(peso, objetivo));
-	}
+        public List<Impacto> getImpactos() {
+            return impactos;
+        }
 
-	public List<Impacto> getImpactos() {
-		return impactos;
-	}
+        public void setImpactos(List<Impacto> impactos) {
+            this.impactos = impactos;
+        }
 
-	public void setImpactos(List<Impacto> impactos) {
-		this.impactos = impactos;
-	}
-
-	@Override
-	public String toString() {
-		return "Simple: "+ getNombre() +" [impactos=" + impactos + "]";
-	}
-	
 }

@@ -10,6 +10,9 @@ import ar.edu.unnoba.poo2018.model.Ambito;
 import ar.edu.unnoba.poo2018.model.Convocatoria;
 import ar.edu.unnoba.poo2018.model.Impacto;
 import ar.edu.unnoba.poo2018.model.LineaEstrategica;
+import ar.edu.unnoba.poo2018.model.Objetivo;
+import ar.edu.unnoba.poo2018.model.Simple;
+import ar.edu.unnoba.poo2018.model.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,17 +21,20 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import persistencePackage.ActividadBean;
+import persistencePackage.SimpleBean;
 
 /**
  *
  * @author Balma
  */
-@ManagedBean(name = "actividadController")
+@ManagedBean
 @SessionScoped
 public class ActividadController implements Serializable {
 
     @EJB
     private ActividadBean actividadb;
+    @EJB
+    private SimpleBean simpleb;
     private String nombre;
     private Date fechaInicio;
     private Date fechaFin;
@@ -37,21 +43,29 @@ public class ActividadController implements Serializable {
     private Convocatoria convocatoria;
     private LineaEstrategica linea;
     private Ambito ambito;
+    private List<Usuario> responsables = new ArrayList<>();
+    private List<Impacto> impactos = new ArrayList<>();
 
-    private Actividad actividad = new Actividad() {
-        @Override
-        public List<Impacto> getImpactos() {
-            return null;
-        }
-    };
     private List<Actividad> actividades = new ArrayList<>();
+    private List<Simple> actividadesSimples = new ArrayList<>();
 
     public String save() {
-        return null;
+        Simple s = new Simple(nombre,fechaInicio,fechaFin,resolucion,expediente,convocatoria,linea,ambito,responsables,impactos);
+        simpleb.create(s);
+        return "SuccessSave";
     }
 
     public List getActividades() {
         return actividades;
+    }
+    
+    public List getActividadesSimples() {
+        actividadesSimples = simpleb.getActividades();
+        if (actividadesSimples != null) {
+            return actividadesSimples;
+        } else {
+            return actividadesSimples;
+        }
     }
 
     public String deleteActividad(Actividad a) {
@@ -138,4 +152,25 @@ public class ActividadController implements Serializable {
         this.ambito = ambito;
     }
 
+    public List<Usuario> getResponsables() {
+        return responsables;
+    }
+
+    public void setResponsables(List<Usuario> responsables) {
+        this.responsables = responsables;
+    }
+
+    public List<Impacto> getImpactos() {
+        return impactos;
+    }
+
+    public void setImpactos(List<Impacto> impactos) {
+        this.impactos = impactos;
+    }
+    
+    public void addImpactos(Objetivo o, int peso){
+        Impacto i = new Impacto(peso,o);
+        impactos.add(i);
+    }
+    
 }

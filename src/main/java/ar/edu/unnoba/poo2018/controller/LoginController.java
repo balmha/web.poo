@@ -1,6 +1,7 @@
 package ar.edu.unnoba.poo2018.controller;
 
 import ar.edu.unnoba.poo2018.model.Usuario;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.ejb.EJB;
@@ -11,9 +12,9 @@ import persistencePackage.UsuarioBean;
  *
  * @author Balma
  */
-@ManagedBean(name = "loginController")
+@ManagedBean
 @SessionScoped
-public class LoginController {
+public class LoginController implements Serializable{
 
     @EJB
     private UsuarioBean userb;
