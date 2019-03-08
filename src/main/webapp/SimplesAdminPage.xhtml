@@ -13,7 +13,7 @@
 
                     <h:form id="activitiesReg">
 
-                        <h:dataTable id="ActivitiesTable" binding="#{   table}" value="#{actividadController.getActividadesSimples()}" var="actividadsimple" class="table table-striped table-hover table-bordered tableUpdated">
+                        <h:dataTable id="ActivitiesTable" binding="#{   table}" value="#{actividadController.getActividadesSimples(loginController.id)}" var="actividadsimple" class="table table-striped table-hover table-bordered tableUpdated">
 
                             <h:column>
                                 <f:facet name="header">Nombre</f:facet>

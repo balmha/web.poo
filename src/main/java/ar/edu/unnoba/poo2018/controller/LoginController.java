@@ -18,6 +18,7 @@ public class LoginController implements Serializable{
 
     @EJB
     private UsuarioBean userb;
+    private Long id;
     private boolean administrador;
     private String name;
     private String password;
@@ -31,8 +32,10 @@ public class LoginController implements Serializable{
         Usuario authuser = userb.findByUser(name, password);
         if (authuser != null) {
             if (authuser.isAdministrador() == true) {
+                this.id=authuser.getId();
                 return "successAdmin";
             } else {
+                this.id=authuser.getId();
                 return "successUser";
             }
         }
@@ -40,6 +43,10 @@ public class LoginController implements Serializable{
         return "invalid";
     }
 
+    public Long getId() {
+        return id;
+    }
+    
     public boolean isAdministrador() {
         return administrador;
     }

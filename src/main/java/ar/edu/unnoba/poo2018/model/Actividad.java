@@ -152,10 +152,24 @@ public abstract class Actividad implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Actividad [nro=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaFin="
-                + fechaFin + ", resolucion=" + resolucion + ", expediente=" + expediente + ", convocatoria="
-                + convocatoria + ", linea=" + linea + ", ambito=" + ambito + ", responsables=" + responsables + "]";
+	public String toString() {
+		return String.format("%s[id=%d]", getClass().getSimpleName(), getNro());
+	}
+	
+    @Override
+    public int hashCode() {
+        return (getNombre() != null) 
+            ? (getClass().getSimpleName().hashCode() + getNombre().hashCode())
+            : super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return (other != null && getNombre() != null
+                && other.getClass().isAssignableFrom(getClass()) 
+                && getClass().isAssignableFrom(other.getClass())) 
+            ? getNombre().equals(((Actividad) other).getNombre())
+            : (other == this);
     }
 
 }

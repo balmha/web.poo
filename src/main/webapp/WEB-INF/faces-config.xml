@@ -71,5 +71,14 @@
             <to-view-id>/SimplesAdminPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <description>SaveCompuesto</description>
+        <navigation-case>
+            <from-action>#{actividadController.saveCompuesto()}</from-action>
+            <from-outcome>SuccessSave</from-outcome>
+            <to-view-id>/CompuestosAdminPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>

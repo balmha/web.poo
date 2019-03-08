@@ -38,11 +38,13 @@ public class SimpleBean {
         return em.find(Simple.class, id);
     }
     
-    public List getActividades() {
-        Query query = em.createQuery("SELECT a FROM Simple a");
+    public List getActividades(Long id) {
+        Query query = em.createQuery("SELECT s FROM Simple s");
+        Query query2 = em.createNativeQuery("SELECT * from Actividad a where a.id IN (select r.actividad_id from Responsables r where r.usuario_id=?) and a.id IN (select s.id from Actividades_Simples s)",Simple.class);
+        query2.setParameter(1, id);
         List<Simple> simpleList;
         try {
-            simpleList = query.getResultList();
+            simpleList = query2.getResultList();
         } catch (Exception e) {
             simpleList = null;
         }

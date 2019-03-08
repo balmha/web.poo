@@ -27,8 +27,9 @@ public class Compuesto extends Actividad implements Serializable{
     public Compuesto(){};
         
     public Compuesto(String nombre,Date fI,Date fF, String res,String exp,Convocatoria conv, 
-            LineaEstrategica lin,Ambito amb,ArrayList<Usuario> resp){
+            LineaEstrategica lin,Ambito amb,List<Usuario> resp,List<Actividad> act){
         super(nombre, fI, fF, res, exp, amb, conv, lin, resp);
+        this.actividades=act;
     }
     
     @Override

@@ -11,7 +11,7 @@
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
         <h:outputScript library="js" name="calendar_es.js"/>
-        <title>Crear Actividad Simple</title>
+        <title>Crear Actividad Compuesta</title>
         <style type="text/css">
             .btnWidth {
                 width: 80px;
@@ -79,8 +79,9 @@
                                                        itemLabel="#{a.nombre}"/>
                                     </h:selectOneMenu>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <p:outputLabel for="user" value="Usuarios: " />
+                                <div class="form-group col-md-1">
+                                    <p:outputLabel for="user" value="Usuarios:"/>
+                                    </div><div class="form-group col-md-3">
                                         <p:selectManyMenu id="user" value="#{actividadController.responsables}" converter="omnifaces.SelectItemsConverter"
                                                           var="u" filter="true" filterMatchMode="contains" showCheckbox="true">
                                             <f:selectItems value="#{usuarioController.getUsuarios()}"/>
@@ -89,13 +90,20 @@
                                             </p:column>
                                         </p:selectManyMenu>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <p:commandLink oncomplete="PF('agregarImpacto').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
-                                    <h:outputLabel>Impacto</h:outputLabel><span> </span>
+                                <div class="form-group col-md-1">
+                                    <p:outputLabel for="act" value="Actividades:"/>
+                                    </div><div class="form-group col-md-4">
+                                        <p:selectManyMenu id="act" value="#{actividadController.listaActividades}" converter="omnifaces.SelectItemsConverter"
+                                                          var="a" filter="true" filterMatchMode="contains" showCheckbox="true">
+                                            <f:selectItems value="#{actividadController.getActividades(loginController.id)}"/>
+                                            <p:column>
+                                                <h:outputText value="#{a.nombre}" />
+                                            </p:column>
+                                        </p:selectManyMenu>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h:commandButton value="Guardar" action="#{actividadController.save()}" class="btn btn-success btnWidth">
+                                <h:commandButton value="Guardar" action="#{actividadController.saveCompuesto()}" class="btn btn-success btnWidth">
                                 </h:commandButton>
                             </div>
                         </p:panel>
@@ -136,24 +144,6 @@
                                              process="@form" update="@form :formConv"/>
                         </h:form>
                     </p:dialog>
-                    
-                    <p:dialog header="Agregar Impacto" modal="true" height="200" width="400"
-                              widgetVar="agregarImpacto">
-                        <h:form id="formImp">
-                            <h:panelGrid columns="2">
-                                <h:outputLabel value="Peso: " />
-                                <h:inputText  id="pesoI" value="#{impactoController.peso}" /><br/>
-                                <h:outputLabel for="objetivoI" value="Objetivo: "/><span> </span>
-                                <h:selectOneMenu id="objetivoI" value="#{impactoController.objetivo}" converter="omnifaces.SelectItemsConverter">
-                                    <f:selectItems value="#{objetivoController.getObjetivos()}" var="o"
-                                                       itemLabel="#{o.nombre}"/>
-                                </h:selectOneMenu>
-                            </h:panelGrid>
-                            <p:commandButton value="Agregar" action="#{actividadController.addImpactos(impactoController.objetivo,impactoController.peso)}"
-                                             process="@form" update="@form :formImp"/>
-                        </h:form>
-                    </p:dialog>
-
                 </div>
             </ui:define>
         </ui:decorate>

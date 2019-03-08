@@ -22,6 +22,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import persistencePackage.ActividadBean;
+import persistencePackage.CompuestoBean;
 import persistencePackage.SimpleBean;
 
 /**
@@ -36,6 +37,8 @@ public class ActividadController implements Serializable {
     private ActividadBean actividadb;
     @EJB
     private SimpleBean simpleb;
+    @EJB
+    private CompuestoBean compuestob;
     private String nombre;
     private Date fechaInicio;
     private Date fechaFin;
@@ -47,25 +50,47 @@ public class ActividadController implements Serializable {
     private List<Usuario> responsables = new ArrayList<>();
     private List<Impacto> impactos = new ArrayList<>();
 
-    private List<Compuesto> actividadesCompuestas = new ArrayList<>();
     private List<Simple> actividadesSimples = new ArrayList<>();
+    private List<Compuesto> actividadesCompuestas = new ArrayList<>();
+    private List<Actividad> getActividad = new ArrayList<>();
+    private List<Actividad> listaActividades = new ArrayList<>();
 
     public String save() {
         Simple s = new Simple(nombre,fechaInicio,fechaFin,resolucion,expediente,convocatoria,linea,ambito,responsables,impactos);
         simpleb.create(s);
         return "SuccessSave";
     }
-
-    public List getActividadesCompuestas() {
-        return actividadesCompuestas;
+    
+    public String saveCompuesto() {
+        Compuesto c = new Compuesto(nombre,fechaInicio,fechaFin,resolucion,expediente,convocatoria,linea,ambito,responsables,listaActividades);
+        compuestob.create(c);
+        return "SuccessSave";
     }
     
-    public List getActividadesSimples() {
-        actividadesSimples = simpleb.getActividades();
+    public List getActividadesSimples(Long id) {
+        actividadesSimples = simpleb.getActividades(id);
         if (actividadesSimples != null) {
             return actividadesSimples;
         } else {
             return actividadesSimples;
+        }
+    }
+    
+    public List getActividades(Long id) {
+        getActividad = actividadb.getActividades(id);
+        if (getActividad != null) {
+            return getActividad;
+        } else {
+            return getActividad;
+        }
+    }
+    
+    public List getActividadesCompuestas(Long id) {
+        actividadesCompuestas = compuestob.getActividades(id);
+        if (actividadesCompuestas != null) {
+            return actividadesCompuestas;
+        } else {
+            return actividadesCompuestas;
         }
     }
 
@@ -172,6 +197,14 @@ public class ActividadController implements Serializable {
     public void addImpactos(Objetivo o, int peso){
         Impacto i = new Impacto(peso,o);
         impactos.add(i);
+    }
+
+    public List<Actividad> getListaActividades() {
+        return listaActividades;
+    }
+
+    public void setListaActividades(List<Actividad> listaActividades) {
+        this.listaActividades = listaActividades;
     }
     
 }
