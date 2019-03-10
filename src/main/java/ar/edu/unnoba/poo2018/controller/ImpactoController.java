@@ -43,4 +43,9 @@ public class ImpactoController implements Serializable{
     public void setObjetivo(Objetivo objetivo) {
         this.objetivo = objetivo;
     }
+    
+    public float getImpactos(Long objetivo, Long user){
+        float sumatoria = impactob.getImpactos(objetivo, user);
+        return sumatoria;
+    }
 }

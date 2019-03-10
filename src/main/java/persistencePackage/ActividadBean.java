@@ -39,12 +39,11 @@ public class ActividadBean {
     }
     
     public List getActividades(Long id) {
-        Query query = em.createQuery("SELECT a FROM Actividad a");
-        Query query2 = em.createNativeQuery("SELECT * from Actividad s where s.id IN (select r.actividad_id from Responsables r where r.usuario_id=?)",Actividad.class);
-        query2.setParameter(1, id);
+        Query query = em.createQuery("SELECT ac FROM Actividad ac JOIN ac.responsables r where r.id=:id");
+        query.setParameter("id", id);
         List<Actividad> actividadList;
         try {
-            actividadList =query2.getResultList();
+            actividadList =query.getResultList();
             System.out.println(actividadList);
         } catch (Exception e) {
             actividadList = null;

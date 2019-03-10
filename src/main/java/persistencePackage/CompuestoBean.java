@@ -39,12 +39,11 @@ public class CompuestoBean {
     }
     
     public List getActividades(Long id) {
-        Query query = em.createQuery("SELECT c FROM Compuesto c");
-        Query query2 = em.createNativeQuery("SELECT * from Actividad a where a.id IN (select r.actividad_id from Responsables r where r.usuario_id=?) and a.id IN (select c.id from Actividades_Compuestas c)", Compuesto.class);
-        query2.setParameter(1, id);
+        Query query = em.createNativeQuery("SELECT * from Actividad a where a.id IN (select r.actividad_id from Responsables r where r.usuario_id=?) and a.id IN (select c.id from Actividades_Compuestas c)", Compuesto.class);
+        query.setParameter(1, id);
         List<Compuesto> CompuestoList;
         try {
-            CompuestoList = query2.getResultList();
+            CompuestoList = query.getResultList();
         } catch (Exception e) {
             CompuestoList = null;
         }

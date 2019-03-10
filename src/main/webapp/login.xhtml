@@ -2,30 +2,36 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-
-    <h:head>
-        <link href="css/loginCSS.css" rel="stylesheet"/>
-        <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
-        <title>Login Page</title>
-    </h:head>
-    <h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition template="InicioTemplate.xhtml">
+        <ui:define name="contenido">
         <div class="container">
-            <h:form class="form-signin">
-                <h2 class="form-signin-heading">Inicie sesión</h2>
-                <h:outputText class="sr-only" value="Ingrese su nombre : " />
-                <h:inputText  class="form-control" id="inputName" value="#{loginController.name}" required="true"/>
-                <h:outputText class="sr-only" value="Ingrese su contraseña :" />
-                <h:inputSecret id="inputPassword" class="form-control" value="#{loginController.password}"
-                               required="true"/>
-                <tr>
-                    <td><h:commandButton class="btn btn-lg btn-primary btn-block" value="Iniciar sesion" action="#{loginController.login()}"/></td><br/>
-                    <td><h:outputText value="No es un usuario? " />
+            <div class="panel panel-info">
+                <div class="panel-heading">Inicio</div>
+                <div class="panel-body">
+                    <div align="center" draggable="false">
+                        <h:form class="form-signin">
+                            <h2 class="form-signin-heading">Inicie sesión</h2>
+                            <h3><span class="label label-default">Usuario</span></h3>
+                            <p:inputText  class="form-control-static" value="#{loginController.name}" required="true"/>
+                            <h3><span class="label label-default">Clave</span></h3>
+                            <p:password class="form-control-static" required="true" value="#{loginController.password}"/>
+                        <br/>
+                        <br/>
+                        <h:commandButton class="btn  btn-lg btn-primary" value="Iniciar sesion" action="#{loginController.login()}"/>
+                        <br/>
+                        </h:form>
+                        <h:outputText value="No es un usuario? " />
                         <h:outputLink value="register2.xhtml">Registrese</h:outputLink>
-                    </td>
-                </tr>
-            </h:form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </h:body>
+        </ui:define>
+        </ui:composition>
+    </body>
 </html>
 

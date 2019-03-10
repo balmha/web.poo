@@ -20,12 +20,12 @@
                     <a class="navbar-brand" href="#">Hi, #{loginController.name}</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Objetivos</a></li>
-                    <li><a href="#">Resultados</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="SimplesUserPage.xhtml">Actividades Simples</a></li>
+                    <li><a href="CompuestosUserPage.xhtml">Actividades Compuestas</a></li>
+                    <li><a href="ObjetivosUserPage.xhtml">Objetivos</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
                     <li><h:form><h:commandLink class="navbar-text" action="#{loginController.logout()}"><span class="glyphicon glyphicon-log-in"></span> Cerrar Sesión</h:commandLink></h:form></li>
                 </ul>
             </div>

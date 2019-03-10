@@ -6,7 +6,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
-        <ui:composition template="templateAdmin.xhtml">
+        <ui:composition template="templateUser.xhtml">
             <ui:define name="contenido">
                 <center><h2><h:outputText value="Registro de objetivos"/></h2></center>
 
@@ -16,31 +16,14 @@
 
                         <h:column>
                             <f:facet name="header">Objetivo</f:facet>
-                            <h:outputText value="#{objetivo.nombre}" rendered="#{not objetivo.editable}"/>
-                            <h:inputText value="#{objetivoController.nombreUpdate}" autocomplete="false" required="true" rendered="#{objetivo.editable}"/>
+                            <h:outputText value="#{objetivo.nombre}"/>
                         </h:column>
                         
                         <h:column>
                             <f:facet name="header">Porcentaje</f:facet>
                             <h:outputText value="#{impactoController.getImpactos(objetivo.nro, loginController.id)} % " />
                         </h:column>
-
-                        <h:column>
-                            <f:facet name="header">Editar</f:facet>
-                            <h:commandButton action="#{objetivoController.editAction(objetivo)}" value="Editar" class="btn btn-primary"
-                                             rendered="#{not objetivo.editable}"/>
-                            <h:commandButton action="#{objetivoController.saveUpdate(objetivo,objetivoController.nombreUpdate)}" value="Guardar" class="btn btn-primary"
-                                             rendered="#{objetivo.editable}">
-                            </h:commandButton>
-                        </h:column>
-
                     </h:dataTable>
-
-                    <center>
-
-                        <h:commandButton action="createObjetivo.xhtml?faces-redirect=true" value="Crear nuevo objetivo" class="btn btn-success btnSpace" />
-
-                    </center>
 
                 </h:form>
 

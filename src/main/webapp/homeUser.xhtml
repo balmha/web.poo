@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
         <ui:composition template="templateUser.xhtml">
             <ui:define name="contenido">
-                <h1>Contenido que inserta el usuario comun en el template.</h1>
+                <h2 style="text-align: center"><h:outputLabel class="label label-default" >Bienvenido al Sistema de Cumplimiento de Objetivos de Desarrollo Sustentable</h:outputLabel></h2>
+                <br/>
+                <p:tabView orientation="left">
+                    <p:tab title="Introduccion">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="El sistema de Objetivos de Desarrollo Sustentable es un aporte a la comunidad para automatizar
+                                          la carga de actividades realizadas por un ente para el cumplimiento de distintos objetivos de desarrollo
+                                          sustentable declarados por la ONU en el marco de una sociedad emergente." />
+                            <p:graphicImage name="images/256ods3.jpg" />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Objetivos">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Se basa en cumplir 17 objetivos declarados por la ONU como los principales, entre ellos:
+                                            ● Fin de la pobreza
+                                            ● Hambre cero
+                                            ● Salud y Bienestar
+                                            ● Educación de calidad
+                                            ● Igualdad de género
+                                            ● Agua limpia y Saneamiento
+                                            ● Energía asequible y no contaminante
+                                            ● Trabajo decente y crecimiento económico
+                                            ● Industria, innovación e infraestructura
+                                            ● Reducción de las desigualdades
+                                            ● Ciudades y comunidades sostenibles
+                                            ● Producción y consumo responsables
+                                            ● Acción por el clima
+                                            ● Vida submarina
+                                            ● Vida de ecosistemas terrestres
+                                            ● Paz, justicia e instituciones sólidas
+                                            ● Alianzas para lograr los Objetivos" />
+                            <p:graphicImage name="images/256ods2.jpg" />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Sistema Web">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:outputText value="En este sistema web encontraran varios modulos donde podran cargar Actividades Simples
+                                           con sus respectivos campos; Actividades Compuestas, las cuales estan conformadas por Actividades Simples
+                                           que deben estar anteriormente cargadas; Tendremos un modulo de Objetivos donde se podran detallar los 17 
+                                           objetivos presentados y finalmente un modulo de resultados donde podremos visualizar datos y estadisticas 
+                                           sobre el cumplimiento de los objetivos" />
+                            <p:graphicImage name="images/256ods.jpg" />
+                        </h:panelGrid>
+                    </p:tab>
+                </p:tabView>
             </ui:define>
         </ui:composition>
     </body>
