@@ -42,16 +42,6 @@
                             </p:column>
 
                             <p:column>
-                                <f:facet name="header">Editar</f:facet>
-                                <p:commandButton value="Editar" class="btn btn-primary"/>
-                            </p:column>
-
-                            <p:column>
-                                <f:facet name="header">Borrar</f:facet>
-                                <p:commandButton value="Borrar" class="btn btn-danger"/>
-                            </p:column>
-
-                            <p:column>
                                 <f:facet name="header">Ampliar</f:facet>
                                 <p:commandButton update=":form2:updateForm" value="Ampliar" class="btn btn-success" oncomplete="PF('detalleCompuesta').show();">
                                     <f:setPropertyActionListener value="#{compuesta}" target="#{actividadController.selectedCompuesto}" />

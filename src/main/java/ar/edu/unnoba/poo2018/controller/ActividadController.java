@@ -97,14 +97,6 @@ public class ActividadController implements Serializable {
         }
     }
 
-    public String deleteActividad(Actividad a) {
-        return null;
-    }
-
-    public String editActividad(Actividad a) {
-        return null;
-    }
-
     public Convocatoria[] getConvocatorias() {
         return null;
     }
