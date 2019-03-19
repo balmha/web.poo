@@ -49,6 +49,9 @@ public class ActividadController implements Serializable {
     private Ambito ambito;
     private List<Usuario> responsables = new ArrayList<>();
     private List<Impacto> impactos = new ArrayList<>();
+    
+    private Simple selectedSimple;
+    private Compuesto selectedCompuesto;
 
     private List<Simple> actividadesSimples = new ArrayList<>();
     private List<Compuesto> actividadesCompuestas = new ArrayList<>();
@@ -193,11 +196,6 @@ public class ActividadController implements Serializable {
     public void setImpactos(List<Impacto> impactos) {
         this.impactos = impactos;
     }
-    
-    public void addImpactos(Objetivo o, int peso){
-        Impacto i = new Impacto(peso,o);
-        impactos.add(i);
-    }
 
     public List<Actividad> getListaActividades() {
         return listaActividades;
@@ -205,6 +203,32 @@ public class ActividadController implements Serializable {
 
     public void setListaActividades(List<Actividad> listaActividades) {
         this.listaActividades = listaActividades;
+    }
+
+    public List<Simple> getActividadesSimples() {
+        return actividadesSimples;
+    }
+    
+    public String addImpactos(Objetivo o, int peso){
+        Impacto i = new Impacto(peso,o);
+        impactos.add(i);
+        return null;
+    }
+
+    public Simple getSelectedSimple() {
+        return selectedSimple;
+    }
+
+    public void setSelectedSimple(Simple selectedSimple) {
+        this.selectedSimple = selectedSimple;
+    }
+
+    public Compuesto getSelectedCompuesto() {
+        return selectedCompuesto;
+    }
+
+    public void setSelectedCompuesto(Compuesto selectedCompuesto) {
+        this.selectedCompuesto = selectedCompuesto;
     }
     
 }

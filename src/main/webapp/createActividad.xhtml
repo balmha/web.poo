@@ -25,7 +25,7 @@
                 <div class="container">
                     <h:form id="createActividadForm">
                         <p:growl id="growl" showDetail="true" sticky="true" />
-                        <p:panel header="Creación de actividades">
+                        <p:panel style=" border: none" header="Creación de actividades">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <p:outputLabel for="fechainicio" value="Fecha de inicio"/><span> </span>
@@ -92,6 +92,15 @@
                                 <div class="form-group col-md-4">
                                     <p:commandLink oncomplete="PF('agregarImpacto').show()"><span class="glyphicon glyphicon-plus"></span></p:commandLink><span> </span>
                                     <h:outputLabel>Impacto</h:outputLabel><span> </span>
+                                    <br/>
+                                    <h:dataTable class="table table-striped table-bordered" value="#{actividadController.impactos}" var="i">
+                                        <h:column>
+                                            #{i.objetivo.nombre}
+                                        </h:column>
+                                        <h:column>
+                                            #{i.peso}
+                                        </h:column>
+                                    </h:dataTable>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -109,7 +118,7 @@
                                 <h:inputText value="#{ambitoController.nombre}" /><br/>
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{ambitoController.save()}"
-                                             process="@form" update="@form :formAmb"/>
+                                             process="@form" oncomplete="PF('agregarAmbito').hide();" update="createActividadForm"/>
                         </h:form>
                     </p:dialog>
 
@@ -121,7 +130,7 @@
                                 <h:inputText  value="#{lineaEstrategicaController.nombre}" /><br/>
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{lineaEstrategicaController.save()}"
-                                             process="@form" update="@form :formLin"/>
+                                             process="@form" oncomplete="PF('agregarLinea').hide();" update="createActividadForm"/>
                         </h:form>
                     </p:dialog>
 
@@ -133,7 +142,7 @@
                                 <h:inputText  value="#{convocatoriaController.nombre}" /><br/>
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{convocatoriaController.save()}"
-                                             process="@form" update="@form :formConv"/>
+                                             process="@form" oncomplete="PF('agregarConvocatoria').hide();" update="createActividadForm"/>
                         </h:form>
                     </p:dialog>
                     
@@ -144,13 +153,12 @@
                                 <h:outputLabel value="Peso: " />
                                 <h:inputText  id="pesoI" value="#{impactoController.peso}" /><br/>
                                 <h:outputLabel for="objetivoI" value="Objetivo: "/><span> </span>
-                                <h:selectOneMenu id="objetivoI" value="#{impactoController.objetivo}" converter="omnifaces.SelectItemsConverter">
-                                    <f:selectItems value="#{objetivoController.getObjetivos()}" var="o"
-                                                       itemLabel="#{o.nombre}"/>
+                                <h:selectOneMenu id="objetivoI" value="#{impactoController.objetivo}" converter="omnifaces.SelectItemsConverter" required="true">
+                                    <f:selectItems value="#{objetivoController.getObjetivos()}" var="o" itemLabel="#{o.nombre}"/>
                                 </h:selectOneMenu>
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{actividadController.addImpactos(impactoController.objetivo,impactoController.peso)}"
-                                             process="@form" update="@form :formImp"/>
+                                             process="@form" oncomplete="PF('agregarImpacto').hide();" update="createActividadForm"/>
                         </h:form>
                     </p:dialog>
 

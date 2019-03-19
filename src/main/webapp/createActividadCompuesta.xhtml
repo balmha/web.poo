@@ -23,9 +23,9 @@
         <ui:decorate template="templateAdmin.xhtml">
             <ui:define name="contenido">
                 <div class="container">
-                    <h:form id="createActividadForm">
+                    <h:form id="createCompuestaForm">
                         <p:growl id="growl" showDetail="true" sticky="true" />
-                        <p:panel header="Creación de actividades">
+                        <p:panel style=" border: none" header="Creación de actividades">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <p:outputLabel for="fechainicio" value="Fecha de inicio"/><span> </span>
@@ -95,7 +95,7 @@
                                     </div><div class="form-group col-md-4">
                                         <p:selectManyMenu id="act" value="#{actividadController.listaActividades}" converter="omnifaces.SelectItemsConverter"
                                                           var="a" filter="true" filterMatchMode="contains" showCheckbox="true">
-                                            <f:selectItems value="#{actividadController.getActividades(loginController.id)}"/>
+                                            <f:selectItems value="#{actividadController.getActividadesSimples(loginController.id)}"/>
                                             <p:column>
                                                 <h:outputText value="#{a.nombre}" />
                                             </p:column>
@@ -117,7 +117,7 @@
                                 <h:inputText value="#{ambitoController.nombre}" /><br/>
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{ambitoController.save()}"
-                                             process="@form" update="@form :formAmb"/>
+                                             process="@form" oncomplete="PF('agregarAmbito').hide();" update="createCompuestaForm"/>
                         </h:form>
                     </p:dialog>
 
@@ -129,7 +129,7 @@
                                 <h:inputText  value="#{lineaEstrategicaController.nombre}" /><br/>
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{lineaEstrategicaController.save()}"
-                                             process="@form" update="@form :formLin"/>
+                                             process="@form" oncomplete="PF('agregarLinea').hide();" update="createCompuestaForm"/>
                         </h:form>
                     </p:dialog>
 
@@ -141,7 +141,7 @@
                                 <h:inputText  value="#{convocatoriaController.nombre}" /><br/>
                             </h:panelGrid>
                             <p:commandButton value="Agregar" action="#{convocatoriaController.save()}"
-                                             process="@form" update="@form :formConv"/>
+                                             process="@form" oncomplete="PF('agregarConvocatoria').hide();" update="createCompuestaForm"/>
                         </h:form>
                     </p:dialog>
                 </div>

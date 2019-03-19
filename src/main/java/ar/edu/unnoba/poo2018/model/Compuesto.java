@@ -31,6 +31,14 @@ public class Compuesto extends Actividad implements Serializable{
         super(nombre, fI, fF, res, exp, amb, conv, lin, resp);
         this.actividades=act;
     }
+
+    public List<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<Actividad> actividades) {
+        this.actividades = actividades;
+    }
     
     @Override
     public String toString() {
