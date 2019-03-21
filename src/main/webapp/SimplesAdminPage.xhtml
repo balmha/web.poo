@@ -39,6 +39,13 @@
                                 <f:facet name="header">Resolucion</f:facet>
                                 <h:outputText value="#{actividadsimple.resolucion}"/>
                             </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">Editar</f:facet>
+                                <p:commandButton value="Editar" class="btn btn-success" action="editActividad.xhtml?faces-redirect=true">
+                                    <f:setPropertyActionListener value="#{actividadsimple}" target="#{actividadController.editableSimple}" />
+                                </p:commandButton>
+                            </p:column>
 
                             <p:column>
                                 <f:facet name="header">Ampliar</f:facet>

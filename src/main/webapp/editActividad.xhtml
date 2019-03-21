@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions">
+
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="calendar_es.js"/>
+        <title>Editar Actividad Simple</title>
+        <style type="text/css">
+            .btnWidth {
+                width: 80px;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <ui:decorate template="templateAdmin.xhtml">
+            <ui:define name="contenido">
+                <div class="container">
+                    <h:form id="editActividadForm">
+                        <p:growl id="growl" showDetail="true" sticky="true" />
+                        <p:panel style=" border: none" header="Edicion de actividades">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <p:outputLabel for="fechainicio" value="Fecha de inicio"/><span> </span>
+                                    <p:calendar id="fechainicio" value="#{actividadController.editableSimple.fechaInicio}" showOn="button" pattern="dd/MM/yyyy" locale="es"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <p:outputLabel for="fechafin" value="Fecha de fin"/><span> </span>
+                                    <p:calendar id="fechafin" value="#{actividadController.editableSimple.fechaFin}" showOn="button" pattern="dd/MM/yyyy" locale="es"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <h:outputLabel for="name">Nombre:</h:outputLabel>
+                                <h:inputText id="name" value="#{actividadController.editableSimple.nombre}" class="form-control" validatorMessage="Nombre es requerido">
+                                    <f:validateRequired />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <h:outputLabel for="resolucion">Resolución:</h:outputLabel>
+                                <h:inputText id="resolucion" value="#{actividadController.editableSimple.resolucion}" class="form-control" validatorMessage="Resolución es requerido">
+                                    <f:validateRequired />
+                                </h:inputText>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <h:outputLabel for="expediente">Expediente:</h:outputLabel>
+                                <h:inputTextarea cols="50" rows="4" id="expediente" value="#{actividadController.editableSimple.expediente}" class="form-control" validatorMessage="Expediente es requerido">
+                                    <f:validateRequired />
+                                </h:inputTextarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <h:outputLabel for="convocatoria">Convocatoria</h:outputLabel><span> </span>
+                                    <h:selectOneMenu id="convocatoria" value="#{actividadController.editableSimple.convocatoria}" converter="omnifaces.SelectItemsConverter">
+                                        <f:selectItems value="#{convocatoriaController.convocatorias}" var="c"
+                                                       itemLabel="#{c.nombre}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <h:outputLabel for="LineaEstrategica">Línea Estratégica</h:outputLabel><span> </span>
+                                    <h:selectOneMenu id="LineaEstrategica" value="#{actividadController.editableSimple.linea}" converter="omnifaces.SelectItemsConverter">
+                                        <f:selectItems value="#{lineaEstrategicaController.lineas}" var="l"
+                                                       itemLabel="#{l.nombre}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <h:outputLabel for="ambito">Ámbito</h:outputLabel><span> </span>
+                                    <h:selectOneMenu id="ambito" value="#{actividadController.editableSimple.ambito}" converter="omnifaces.SelectItemsConverter">
+                                        <f:selectItems value="#{ambitoController.ambitos}" var="a"
+                                                       itemLabel="#{a.nombre}"/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:commandButton value="Guardar" action="#{actividadController.editSimple()}" class="btn btn-success btnWidth">
+                                </h:commandButton>
+                            </div>
+                        </p:panel>
+                    </h:form>
+
+                </div>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>

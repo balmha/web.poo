@@ -80,5 +80,23 @@
             <to-view-id>/CompuestosAdminPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <description>EditSimple</description>
+        <navigation-case>
+            <from-action>#{actividadController.editSimple()}</from-action>
+            <from-outcome>SuccessSave</from-outcome>
+            <to-view-id>/SimplesAdminPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <description>EditCompuesto</description>
+        <navigation-case>
+            <from-action>#{actividadController.editCompuesto()}</from-action>
+            <from-outcome>SuccessSave</from-outcome>
+            <to-view-id>/CompuestosAdminPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>

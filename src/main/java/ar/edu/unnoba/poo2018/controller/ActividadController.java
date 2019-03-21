@@ -51,7 +51,9 @@ public class ActividadController implements Serializable {
     private List<Impacto> impactos = new ArrayList<>();
     
     private Simple selectedSimple;
+    private Simple editableSimple;
     private Compuesto selectedCompuesto;
+    private Compuesto editableCompuesto;    
 
     private List<Simple> actividadesSimples = new ArrayList<>();
     private List<Compuesto> actividadesCompuestas = new ArrayList<>();
@@ -61,6 +63,16 @@ public class ActividadController implements Serializable {
     public String save() {
         Simple s = new Simple(nombre,fechaInicio,fechaFin,resolucion,expediente,convocatoria,linea,ambito,responsables,impactos);
         simpleb.create(s);
+        return "SuccessSave";
+    }
+    
+    public String editSimple(){
+        simpleb.Update(editableSimple);
+        return "SuccessSave";
+    }
+    
+    public String editCompuesto(){
+        compuestob.Update(editableCompuesto);
         return "SuccessSave";
     }
     
@@ -222,5 +234,22 @@ public class ActividadController implements Serializable {
     public void setSelectedCompuesto(Compuesto selectedCompuesto) {
         this.selectedCompuesto = selectedCompuesto;
     }
+
+    public Simple getEditableSimple() {
+        return editableSimple;
+    }
+
+    public void setEditableSimple(Simple editableSimple) {
+        this.editableSimple = editableSimple;
+    }
+
+    public Compuesto getEditableCompuesto() {
+        return editableCompuesto;
+    }
+
+    public void setEditableCompuesto(Compuesto editableCompuesto) {
+        this.editableCompuesto = editableCompuesto;
+    }    
+    
     
 }
